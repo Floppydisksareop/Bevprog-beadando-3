@@ -61,7 +61,7 @@ public:
     }
     void Check_field()
     {
-        /*for(int i = 0; i < 9; i++)
+        for(int i = 0; i < 9; i++)
         {
             for(int j = 0; j < 8; j++)
             {
@@ -88,7 +88,7 @@ public:
                     }
                 }
             }
-        }*/
+        }
         for(int ii = 0; ii < 3; ii++)
         {
             for(int jj = 0; jj < 3; jj++)
@@ -97,13 +97,21 @@ public:
                 {
                     for(int j = i+1; j < 9; j++)
                     {
-                        if(StatusMatrix[ii*(i/3)][jj*(i%3)] == StatusMatrix[ii*(j/3)][jj*(j%3)])
+                        if(StatusMatrix[ii*3+(i/3)][jj*3+(i%3)] == StatusMatrix[ii*3+(j/3)][jj*3+(j%3)])
                         {
-                            su.at(ii*(i/3)+jj*(i%3))->False();
-                            su.at(ii*(j/3)+jj*(j%3))->False();
+                            su.at((ii*3+(i/3))*9+jj*3+(i%3))->False();
+                            su.at((ii*3+(j/3))*9+jj*3+(j%3))->False();
                         }
                     }
                 }
+            }
+        }
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                if(StatusMatrix[i][j]==0)
+                    su.at(i*9+j)->False();
             }
         }
     }
