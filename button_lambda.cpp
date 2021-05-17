@@ -19,5 +19,9 @@ void Button_L::handle(genv::event ev)
         _action();
         _pressed = false;
     }
+    if(_pressed && !chosen(ev.pos_x, ev.pos_y) && ev.button==-genv::btn_left)
+    {
+        _pressed = false;
+    }
 }
 

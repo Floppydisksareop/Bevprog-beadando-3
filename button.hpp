@@ -15,6 +15,7 @@ public:
     virtual void handle(genv::event ev);
     virtual bool is_pressed();
     virtual std::string return_value();
+    virtual void focus_lost();
 };
 
 
