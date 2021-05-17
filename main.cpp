@@ -25,6 +25,7 @@ private:
     Sudoku * field;
     int StatusMatrix[9][9];
     Button_L * Check;
+    Text * Menu;
 public:
     MyWindow():Window(X,Y,w)
     {
@@ -42,10 +43,10 @@ public:
             for(int j = 0; j < 9; j++)
             {
                 if(StatusMatrix[i][j] == 0)
-                    field = new Sudoku(10+j*X/11,10+i*Y/11,X/11,Y/11,j,i,true,[this, i, j](){SetMatrix(j,i);});
+                    field = new Sudoku(10+j*X/15+10*(j/3),10+i*Y/15+10*(i/3),X/15,Y/15,j,i,true,[this, i,j](){SetMatrix(i,j);});
                 else
                 {
-                    field = new Sudoku(10+j*X/11,10+i*Y/11,X/11,Y/11,j,i,false,[this, i, j](){SetMatrix(j,i);});
+                    field = new Sudoku(10+j*X/15+10*(j/3),10+i*Y/15+10*(i/3),X/15,Y/15,j,i,false,[this, i, j](){SetMatrix(i,j);});
                     field->set_value(StatusMatrix[i][j]);
                 }
                 su.push_back(field);
@@ -57,10 +58,22 @@ public:
     }
     void SetMatrix(int x, int y)
     {
-        std::cout << x << " " << y << endl;
+        stringstream ss;
+        ss << su.at(x*9+y)->return_value();
+        int value;
+        ss >> value;
+        cout << value;
+        StatusMatrix[x][y] = value;
     }
     void Check_field()
     {
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                su.at(i*9+j)->NotFalse();
+            }
+        }
         for(int i = 0; i < 9; i++)
         {
             for(int j = 0; j < 8; j++)

@@ -128,6 +128,11 @@ void Sudoku::False()
     _false = true;
 }
 
+void Sudoku::NotFalse()
+{
+    _false = false;
+}
+
 std::string Sudoku::return_value()
 {
     std::stringstream ss;

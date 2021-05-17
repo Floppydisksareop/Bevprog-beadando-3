@@ -18,6 +18,7 @@ public:
     virtual void set_value(int value);
     std::string return_value();
     virtual void False();
+    virtual void NotFalse();
 };
 
 #endif // SUDOKU_TEXT_HPP_INCLUDED
