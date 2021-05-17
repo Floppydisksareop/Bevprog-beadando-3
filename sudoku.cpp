@@ -3,7 +3,7 @@
 
 using namespace genv;
 
-Sudoku::Sudoku(int x, int y, int sx, int sy, bool edit):Number(x,y,sx,sy,9,0), _can_edit(edit)
+Sudoku::Sudoku(int x, int y, int sx, int sy, int pos_x, int pos_y, bool edit,std::function<void()> action):Number(x,y,sx,sy,9,0), _pos_x(pos_x), _pos_y(pos_y), _can_edit(edit), _action(action)
 {
 
 }
@@ -74,7 +74,7 @@ void Sudoku::handle(genv::event ev)
     }
 }
 
-void Sudoku::get_value(int value)
+void Sudoku::set_value(int value)
 {
     _value = value;
 }

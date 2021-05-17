@@ -38,11 +38,11 @@ public:
             for(int j = 0; j < 9; j++)
             {
                 if(StatusMatrix[i][j] == 0)
-                    field = new Sudoku(10+j*X/11,10+i*Y/11,X/11,Y/11,true);
+                    field = new Sudoku(10+j*X/11,10+i*Y/11,X/11,Y/11,j,i,true);
                 else
                 {
-                    field = new Sudoku(10+j*X/11,10+i*Y/11,X/11,Y/11,false);
-                    field->get_value(StatusMatrix[i][j]);
+                    field = new Sudoku(10+j*X/11,10+i*Y/11,X/11,Y/11,j,i,false);
+                    field->set_value(StatusMatrix[i][j]);
                 }
                 NewWidget(field);
             }
