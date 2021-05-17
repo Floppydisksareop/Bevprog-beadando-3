@@ -15,8 +15,6 @@ public:
     virtual void handle(genv::event ev) = 0;
     virtual void focus_lost();
     virtual std::string return_value() = 0;
-    virtual void get_value(std::string new_value);
-    virtual std::string lose_value();
 };
 
 #endif // WIDGETS_HPP_INCLUDED

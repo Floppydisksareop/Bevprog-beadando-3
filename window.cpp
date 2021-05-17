@@ -8,6 +8,7 @@ using namespace genv;
 
 Window::Window (int X, int Y, std::vector<Widget*>& w) : _X(X), _Y(Y),widgets(w)
 {
+    gout.open(X,Y);
     focus = -1;
 }
 
@@ -27,7 +28,7 @@ void Window::DrawWidgets()
     {
         widgets[focus]->draw();
     }
-    gout<<refresh;
+    gout << refresh;
 
 }
 
@@ -88,8 +89,8 @@ void Window::Write()
 
 void Window::EventLoop()
 {
-    DrawWidgets();
     event ev;
+    DrawWidgets();
     while(gin >> ev && ev.keycode != key_escape)
     {
         ChangeFocus(ev);

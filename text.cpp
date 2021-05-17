@@ -3,12 +3,11 @@
 #include "widgets.hpp"
 #include <vector>
 #include <string>
-#include <iostream>
 
 using namespace std;
 using namespace genv;
 
-Text::Text(int x, int y, int sx, int sy, string options, size_t nr) : Widget(x,y,sx,sy), _nr(nr), _nr_og(nr)
+Text::Text(int x, int y, int sx, int sy, string options, int nr) : Widget(x,y,sx,sy), _nr(nr)
 {
     size_t i = 0;
     while (i < options.length())
@@ -51,17 +50,14 @@ void Text::draw()
     gout << color(255,255,255) << move_to(_x+3*_size_x/4, _y) << line(0,_size_y);
     gout << color(255,0,0) << move_to(_x+3*_size_x/4+4, _y+_size_y/2) << line_to(_x+7*_size_x/8, _y+3*_size_y/4);
     gout << color(255,0,0) << move_to(_x+_size_x-4,_y+_size_y/2) << line_to(_x+7*_size_x/8, _y+3*_size_y/4);
-    if(_options.size()>0)
-        gout << color(255,0,0) << move_to(_x+4, _y+_size_y/2) << text(_options.at(_chosen_option));
-    else
-        gout << color(255,0,0) << move_to(_x+4, _y+_size_y/2) << text(" ");
+    gout << color(255,0,0) << move_to(_x+4, _y+_size_y/2) << text(_options[_chosen_option]);
     if(open)
     {
         for (int i = 1; i <= _nr; i++)
         {
             gout << color(255, 255, 255) << move_to(_x, _y+i*_size_y) << box(7*_size_x/8,_size_y);
             gout << color(125,125,125) << move_to(_x+2,_y+i*_size_y+2) << box(7*_size_x/8-4, _size_y-4);
-            gout << color(255,0,0) << move_to(_x+4, _y+_size_y*i+_size_y/2) << text(_options.at(_top+i-1));
+            gout << color(255,0,0) << move_to(_x+4, _y+_size_y*i+_size_y/2) << text(_options[_top+i-1]);
         }
     }
 }
@@ -98,7 +94,6 @@ void Text::handle(event ev)
     {
         if(ev.type == ev_mouse && ev.button == btn_left && ev.pos_x >= _x && ev.pos_x <= _x+_size_x && ev.pos_y >= _y && ev.pos_y <= _y+_size_y)
         {
-            _top = 0;
             open = true;
         }
 
@@ -108,39 +103,10 @@ void Text::handle(event ev)
 
 string Text::return_value()
 {
-    return _options.at(_chosen_option);
+    return _options[_chosen_option];
 }
 
 void Text::focus_lost()
 {
     open=false;
-}
-
-void Text::get_value(string new_value)
-{
-    if(new_value.length()>0)
-    {
-        _options.push_back(new_value);
-        if(_nr < _nr_og)
-        {
-            _nr++;
-        }
-    }
-}
-
-string Text::lose_value()
-{
-    if(_options.size()>0)
-    {
-        string temp;
-        temp = _options.at(_chosen_option);
-        _options.erase(_options.begin()+_chosen_option);
-        _chosen_option = 0;
-        if(_nr > _options.size())
-        {
-            _nr--;
-        }
-        return temp;
-    }
-    return "";
 }

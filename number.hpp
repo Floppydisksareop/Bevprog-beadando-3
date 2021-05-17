@@ -6,7 +6,7 @@
 
 class Number : public Widget
 {
-private:
+protected:
     int _int_top, _int_bottom, _value;
 public:
     Number(int x, int y, int sx, int sy, int top, int bottom);

@@ -51,13 +51,12 @@
 			<Add library="dxguid" />
 			<Add directory="lib" />
 		</Linker>
-		<Unit filename="button.cpp" />
-		<Unit filename="button.hpp" />
-		<Unit filename="button_trans.cpp" />
-		<Unit filename="button_trans.hpp" />
+		<Unit filename="board1.txt" />
 		<Unit filename="main.cpp" />
 		<Unit filename="number.cpp" />
 		<Unit filename="number.hpp" />
+		<Unit filename="sudoku.cpp" />
+		<Unit filename="sudoku_text.hpp" />
 		<Unit filename="text.cpp" />
 		<Unit filename="text.hpp" />
 		<Unit filename="widgets.cpp" />
