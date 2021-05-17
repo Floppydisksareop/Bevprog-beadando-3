@@ -19,4 +19,9 @@ void Widget::focus_lost()
 
 }
 
+void Widget::False()
+{
+
+}
+
 #endif // WIDGETS_CPP_INCLUDED
