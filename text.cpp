@@ -48,16 +48,16 @@ void Text::draw()
     gout << color(255,255,255) << move_to(_x,_y) << box(_size_x,_size_y);
     gout << color(125,125,125) << move_to(_x+2,_y+2) << box(_size_x-4, _size_y-4);
     gout << color(255,255,255) << move_to(_x+3*_size_x/4, _y) << line(0,_size_y);
-    gout << color(255,0,0) << move_to(_x+3*_size_x/4+4, _y+_size_y/2) << line_to(_x+7*_size_x/8, _y+3*_size_y/4);
-    gout << color(255,0,0) << move_to(_x+_size_x-4,_y+_size_y/2) << line_to(_x+7*_size_x/8, _y+3*_size_y/4);
-    gout << color(255,0,0) << move_to(_x+4, _y+_size_y/2) << text(_options[_chosen_option]);
+    gout << color(255,255,255) << move_to(_x+3*_size_x/4+4, _y+_size_y/2) << line_to(_x+7*_size_x/8, _y+3*_size_y/4);
+    gout << color(255,255,255) << move_to(_x+_size_x-4,_y+_size_y/2) << line_to(_x+7*_size_x/8, _y+3*_size_y/4);
+    gout << color(255,255,255) << move_to(_x+4, _y+_size_y/2) << text(_options[_chosen_option]);
     if(open)
     {
         for (int i = 1; i <= _nr; i++)
         {
             gout << color(255, 255, 255) << move_to(_x, _y+i*_size_y) << box(7*_size_x/8,_size_y);
             gout << color(125,125,125) << move_to(_x+2,_y+i*_size_y+2) << box(7*_size_x/8-4, _size_y-4);
-            gout << color(255,0,0) << move_to(_x+4, _y+_size_y*i+_size_y/2) << text(_options[_top+i-1]);
+            gout << color(255,255,255) << move_to(_x+4, _y+_size_y*i+_size_y/2) << text(_options[_top+i-1]);
         }
     }
 }

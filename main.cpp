@@ -25,10 +25,15 @@ private:
     Sudoku * field;
     int StatusMatrix[9][9];
     Button_L * Check;
+    Button_L * Load;
     Text * Menu;
 public:
     MyWindow():Window(X,Y,w)
     {
+        Menu = new Text(10*X/15,10,2*X/15,Y/15,"board1.txt/board2.txt/board3.txt/",3);
+        Load = new Button_L(X/100+12*X/15,10,2*X/15,Y/15,"Load new board",[&](){Load_Board();});
+        NewWidget(Menu);
+        NewWidget(Load);
         ifstream f;
         f.open("board1.txt");
         for(int i = 0; i < 9; i++)
@@ -38,6 +43,7 @@ public:
                 f >> StatusMatrix[i][j];
             }
         }
+        f.close();
         for(int i = 0; i < 9; i++)
         {
             for(int j = 0; j < 9; j++)
@@ -127,6 +133,29 @@ public:
                     su.at(i*9+j)->False();
             }
         }
+    }
+    void Load_Board()
+    {
+        ifstream f;
+        f.open(Menu->return_value());
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                f >> StatusMatrix[i][j];
+                su.at(i*9+j)->NotFalse();
+                su.at(i*9+j)->set_value(StatusMatrix[i][j]);
+                if(StatusMatrix[i][j] == 0)
+                {
+                    su.at(i*9+j)->set_edit(true);
+                }
+                else
+                {
+                    su.at(i*9+j)->set_edit(false);
+                }
+            }
+        }
+        f.close();
     }
 };
 

@@ -133,6 +133,11 @@ void Sudoku::NotFalse()
     _false = false;
 }
 
+void Sudoku::set_edit(bool edit)
+{
+    _can_edit = edit;
+}
+
 std::string Sudoku::return_value()
 {
     std::stringstream ss;

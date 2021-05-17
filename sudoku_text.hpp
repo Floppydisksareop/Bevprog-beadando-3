@@ -19,6 +19,7 @@ public:
     std::string return_value();
     virtual void False();
     virtual void NotFalse();
+    virtual void set_edit(bool edit);
 };
 
 #endif // SUDOKU_TEXT_HPP_INCLUDED
