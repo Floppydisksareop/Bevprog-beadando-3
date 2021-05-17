@@ -5,6 +5,8 @@
 #include "window.hpp"
 #include "text.hpp"
 #include "sudoku_text.hpp"
+#include "button.hpp"
+#include "button_lambda.hpp"
 #include <vector>
 #include <fstream>
 using namespace genv;
