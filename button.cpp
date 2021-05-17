@@ -34,5 +34,5 @@ bool Button::is_pressed()
 
 std::string Button::return_value()
 {
-
+    return "";
 }
