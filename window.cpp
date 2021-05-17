@@ -34,33 +34,37 @@ void Window::DrawWidgets()
 
 void Window::ChangeFocus(event ev)
 {
-        if (ev.type == ev_mouse && ev.button==btn_left)
+    if (ev.type == ev_mouse && ev.button==btn_left)
+    {
+        for (size_t i=0; i<widgets.size(); i++)
         {
-            for (size_t i=0; i<widgets.size(); i++)
+            if(widgets[i]->chosen(ev.pos_x, ev.pos_y))
             {
-                if (widgets[i]->chosen(ev.pos_x, ev.pos_y))
+                if(i!=focus && focus != -1 && !(widgets[focus]->chosen(ev.pos_x,ev.pos_y)))
                 {
-                    if(i!=focus && focus != -1)
-                    {
-                        widgets[focus]->focus_lost();
-                    }
+                    widgets[focus]->focus_lost();
                     focus = i;
                 }
-
+                if(focus == -1)
+                {
+                    focus = i;
+                }
             }
+
         }
-        if(ev.keycode == key_tab && focus!=-1)
-        {
-            widgets[focus]->focus_lost();
-            if(focus < widgets.size())
-                focus++;
-            if(focus == widgets.size())
-                focus = 0;
-        }
-        if(ev.keycode == 's')
-        {
-            Write();
-        }
+    }
+    if(ev.keycode == key_tab && focus!=-1)
+    {
+        widgets[focus]->focus_lost();
+        if(focus < widgets.size())
+            focus++;
+        if(focus == widgets.size())
+            focus = 0;
+    }
+    if(ev.keycode == 's')
+    {
+        Write();
+    }
 }
 
 void Window::ClearScreen()
