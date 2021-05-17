@@ -59,7 +59,7 @@ public:
                 NewWidget(field);
             }
         }
-        Check = new Button_L(10*X/15,3*Y/30,X/15,Y/15,"Submit",[&](){Check_field();});
+        Check = new Button_L(12*X/15,3*Y/30,X/15,Y/15,"Submit",[&](){Check_field();});
         NewWidget(Check);
     }
     void SetMatrix(int x, int y)
